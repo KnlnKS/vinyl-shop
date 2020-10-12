@@ -54,12 +54,11 @@
       }
 
       .card {
-        height: 400px;
-        width: 400px;
-        min-width: 250px;
+        height: 20rem;
+        width: 20rem;
+        min-width: 20rem;
         padding: 1.5rem;
         border-radius: 16px;
-        background: #17141d;
         box-shadow: -1rem 0 3rem #000;
         display: flex;
         flex-direction: column;
@@ -113,30 +112,12 @@
 
       .card-author {
         margin: 3rem 0 0;
-        display: grid;
-        grid-template-columns: 75px 1fr;
+        grid-template-columns: 75px;
         align-items: center;
         position: relative;
       }
 
-      .author-avatar {
-        grid-area: auto;
-        align-self: start;
-        position: relative;
-        box-sizing: border-box;
-      }
-
-      .author-avatar img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: block;
-        overflow: hidden;
-        margin: 16px 10px;
-      }
-
       .author-name {
-        grid-area: auto;
         box-sizing: border-box;
       }
 
@@ -172,6 +153,7 @@
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
         background-clip: text;
         border-color: white;
       }
@@ -181,26 +163,27 @@
   <body>
     <section class="card-list">
       <% tracks.forEach((track)=>{%>
-      <article class="card">
+      <article
+        class="card"
+        style="
+          background-image: url('<%= track.albumArt %>');
+          background-size: contain;
+        "
+      >
         <header class="card-header">
           <p><%= track.releaseDate %></p>
           <h2><%= track.name %></h2>
         </header>
 
         <div class="card-author">
-          <a class="author-avatar" href="#">
-            <img src="profile img" />
-          </a>
-
           <div class="author-name">
-            <div class="author-name-prefix">Title</div>
-            <%= track.artistName %>
+            <div class="author-name-prefix">Artist:</div>
+            <div class="author-name-name"><%= track.artistName %></div>
+            
           </div>
         </div>
         <div class="tags">
-          <a href="#">html</a>
-          <a href="#">css</a>
-          <a href="#">web-dev</a>
+          <a href="#">▶</a>
         </div>
       </article>
       <%})%>
