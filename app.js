@@ -24,12 +24,12 @@ app.get("/", async (req, res) => {
   apiTrackList = (await spotifyApi.getPlaylist(id)).body.tracks.items;
 
   for (var i = 0; i < apiTrackList.length; i++) {
-
     trackList.push({
       releaseDate: apiTrackList[i].track.album.release_date,
       name: apiTrackList[i].track.name,
       albumArt: apiTrackList[i].track.album.images[0].url,
       artistName: apiTrackList[i].track.artists[0].name,
+      url: apiTrackList[i].track.external_urls.spotify,
     });
   }
 
