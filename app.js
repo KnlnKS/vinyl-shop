@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
       name: apiTrackList[i].track.name,
       albumArt: apiTrackList[i].track.album.images[0].url,
       artistName: apiTrackList[i].track.artists[0].name,
-      url: apiTrackList[i].track.external_urls.spotify,
+      id: apiTrackList[i].track.id,
     });
   }
 
