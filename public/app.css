@@ -39,11 +39,11 @@ a {
 }
 
 .card {
-  height: 20rem;
-  width: 20rem;
-  min-width: 20rem;
+  height: 15rem;
+  width: 15rem;
+  min-width: 15rem;
   padding: 1.5rem;
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: -1rem 0 3rem #000;
   display: flex;
   flex-direction: column;
@@ -121,4 +121,12 @@ h2:hover {
   font-style: normal;
   font-weight: 700;
   color: #7a7a8c;
+}
+
+.author-name-name:hover{
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  text-shadow: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
 }

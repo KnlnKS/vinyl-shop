@@ -1,38 +1,42 @@
 <%- include("partials/header.ejs") %>
-<iframe
-  id="myiFrame"
-  src=""
-  width="300"
-  height="380"
-  frameborder="0"
-  allowtransparency="true"
-  allow="encrypted-media"
-></iframe>
-<section class="card-list">
-  <% tracks.forEach((track)=>{%>
-  <article
-    class="card"
-    style="
-      background-image: url('<%= track.albumArt %>');
-      background-size: contain;
-    "
-  >
-    <header class="card-header">
-      <p><%= track.releaseDate %></p>
-      <button
-        onClick="$('#myiFrame').attr('src', 'https://open.spotify.com/embed/track/'+'<%= track.id %>');"
-      >
-        <h2><%= track.name %></h2>
-      </button>
-    </header>
-
-    <div class="card-author">
-      <div class="author-name">
-        <div class="author-name-prefix">Artist:</div>
-        <div class="author-name-name"><%= track.artistName %></div>
+<section style="width: 100vw; height: 100vw">
+  <section style="display: flex; justify-content: center; align-items: center">
+    <iframe
+      id="myiFrame"
+      src=""
+      style="width: 50rem; height: 30rem"
+      frameborder="0"
+      allowtransparency="true"
+      allow="encrypted-media"
+    ></iframe>
+  </section>
+  
+  <section class="card-list">
+    <% tracks.forEach((track)=>{%>
+    <article
+      class="card"
+      style="
+        background-image: url('<%= track.albumArt %>');
+        background-size: contain;
+      "
+    >
+      <header class="card-header">
+        <p><%= track.releaseDate %></p>
+        <button
+          onClick="$('#myiFrame').attr('src', 'https://open.spotify.com/embed/track/'+'<%= track.id %>');"
+        >
+          <h2><%= track.name %></h2>
+        </button>
+      </header>
+  
+      <div class="card-author">
+        <div class="author-name">
+          <div class="author-name-prefix">Artist:</div>
+          <div class="author-name-name"><%= track.artistName %></div>
+        </div>
       </div>
-    </div>
-  </article>
-  <%})%>
+    </article>
+    <%})%>
+  </section>
 </section>
 <%- include("partials/footer.ejs") %>
