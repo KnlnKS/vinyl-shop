@@ -16,10 +16,11 @@ async function getTrackList(id) {
 }
 
 // --DEFAULT Route--
-app.get("/", async (req, res) => {
-  var id = "37i9dQZF1DX873GaRGUmPl";
+app.get("/:id", async (req, res) => {
+  var id = req.params.id;
   var trackList = [];
 
+  try{
   var credentials = await spotifyApi.clientCredentialsGrant();
   spotifyApi.setAccessToken(credentials.body["access_token"]);
 
@@ -33,9 +34,42 @@ app.get("/", async (req, res) => {
       artistName: apiTrackList[i].track.artists[0].name,
       id: apiTrackList[i].track.id,
     });
+  }}catch(err){
+    console.log(err)
+    res.render("error.ejs")
   }
 
   res.render("landing.ejs", { tracks: await trackList });
+});
+
+app.get("/playlist/:id", async (req, res) => {
+  var id = req.params.id;
+  var trackList = [];
+
+  try{
+    var credentials = await spotifyApi.clientCredentialsGrant();
+    spotifyApi.setAccessToken(credentials.body["access_token"]);
+  
+    apiTrackList = (await spotifyApi.getPlaylist(id)).body.tracks.items;
+  
+    for (var i = 0; i < apiTrackList.length; i++) {
+      trackList.push({
+        releaseDate: apiTrackList[i].track.album.release_date,
+        name: apiTrackList[i].track.name,
+        albumArt: apiTrackList[i].track.album.images[0].url,
+        artistName: apiTrackList[i].track.artists[0].name,
+        id: apiTrackList[i].track.id,
+      });
+    }}catch(err){
+      console.log(err)
+      res.render("error.ejs")
+    }
+  
+    res.render("landing.ejs", { tracks: await trackList });
+});
+
+app.get("/*", async (req, res) => {
+      res.render("error.ejs")
 });
 
 app.listen(3000, function () {
