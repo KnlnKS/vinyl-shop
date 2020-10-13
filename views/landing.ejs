@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") %>
-<section style="width: 100vw; height: 100vw">
+<section>
   <section style="display: flex; justify-content: center; align-items: center">
     <iframe
       id="myiFrame"
@@ -10,7 +10,7 @@
       allow="encrypted-media"
     ></iframe>
   </section>
-  
+
   <section class="card-list">
     <% tracks.forEach((track)=>{%>
     <article
@@ -28,7 +28,7 @@
           <h2><%= track.name %></h2>
         </button>
       </header>
-  
+
       <div class="card-author">
         <div class="author-name">
           <div class="author-name-prefix">Artist:</div>
