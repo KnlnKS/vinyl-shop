@@ -1,4 +1,5 @@
-var app = require("express")(),
+var express = require("express"),
+  app = express(),
   SpotifyWebApi = require("spotify-web-api-node"),
   spotifyApi = new SpotifyWebApi({
     clientId: "7f1c807b29964124956d0592ad6542df",
@@ -7,6 +8,7 @@ var app = require("express")(),
   bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 async function getTrackList(id) {
